@@ -111,10 +111,10 @@ When consuming responses, normalize:
 | Rating | Integer or float | Float rounded to 1 decimal |
 | Reviews | String or int | Integer |
 
-Use `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run dataforseo_normalize.py --module merchant` for automatic normalization.
+Use `"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run dataforseo_normalize.py --module merchant` for automatic normalization.
 
 ## Cost Reference
 
-See `${CLAUDE_PLUGIN_ROOT}/skills/seo-dataforseo/references/cost-tiers.md` for the full pricing table,
+See `${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/skills/seo-dataforseo/references/cost-tiers.md` for the full pricing table,
 budget presets, and cost reduction tips. All Merchant endpoints are $0.02/call
 on standard queue.

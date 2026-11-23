@@ -44,7 +44,7 @@ Business-type detection, subagent delegation, scoring and reports stay as
 ## Step 1: decide the mode
 
 ```bash
-"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run shopify_env.py precheck <url>
+"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run shopify_env.py precheck <url>
 ```
 
 Always exits 0 and always prints JSON. Read `mode`:
@@ -67,7 +67,7 @@ higher limits. Tell the user to copy the three values again from the Shopify adm
 ## Step 2: crawl
 
 ```bash
-"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run shopify_crawl.py <url> --out ./crawl
+"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run shopify_crawl.py <url> --out ./crawl
 ```
 
 No `--max-pages`. A signed crawl covers the complete sitemap; a cap applies only when

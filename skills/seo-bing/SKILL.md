@@ -32,11 +32,11 @@ specifically for **Amazon/Bing/Naver/Seznam.cz/Yandex/Yep indexing** and
 
 | Command | Underlying script |
 |---|---|
-| `/seo bing links <url>` | `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run bing_webmaster.py links <url>` |
-| `/seo bing compare <urlA> <urlB>` | `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run bing_webmaster.py compare <urlA> <urlB>`; both properties must be registered to the API account |
-| `/seo bing submit <url>` (single URL) | `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run indexnow_submit.py --host ... --urls <url>` |
-| `/seo bing submit-batch <file>` | `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run indexnow_submit.py --host ... --urls-file <file>` |
-| `/seo bing verify-indexnow` | `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run indexnow_submit.py --host ... --verify-only` |
+| `/seo bing links <url>` | `"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run bing_webmaster.py links <url>` |
+| `/seo bing compare <urlA> <urlB>` | `"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run bing_webmaster.py compare <urlA> <urlB>`; both properties must be registered to the API account |
+| `/seo bing submit <url>` (single URL) | `"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run indexnow_submit.py --host ... --urls <url>` |
+| `/seo bing submit-batch <file>` | `"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run indexnow_submit.py --host ... --urls-file <file>` |
+| `/seo bing verify-indexnow` | `"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run indexnow_submit.py --host ... --verify-only` |
 
 ## When this skill applies
 

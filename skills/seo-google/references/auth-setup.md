@@ -112,7 +112,7 @@ value (`--domain ""`) is always an error.
 ## Step 8: Verify Setup
 
 ```bash
-"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run google_auth.py --check
+"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run google_auth.py --check
 ```
 
 Expected output at Tier 2 (full):
@@ -173,10 +173,10 @@ not requested: no script calls a Search Console write method.
 
 ```bash
 # Read-only sign-in (Search Console and GA4 reports)
-"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run google_auth.py --auth --creds /path/to/client_secret.json
+"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run google_auth.py --auth --creds /path/to/client_secret.json
 
 # Read-only plus the Indexing API (needed only by indexing_notify.py)
-"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run google_auth.py --auth --indexing --creds /path/to/client_secret.json
+"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run google_auth.py --auth --indexing --creds /path/to/client_secret.json
 ```
 
 A token saved by an earlier version keeps the scopes it was granted and keeps

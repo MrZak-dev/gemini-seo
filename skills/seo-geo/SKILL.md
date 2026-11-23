@@ -334,7 +334,7 @@ Google added many AI citation/source surfaces across AI Overviews **and** AI Mod
 
 For AI Overviews or AI Mode visibility changes, check the dated product and
 core-update entries first:
-`"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run seo_updates.py --kind product --kind core --limit 0 --json`.
+`"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run seo_updates.py --kind product --kind core --limit 0 --json`.
 `--limit 0` lists every match (the default stops at the 10 newest and sets
 `truncated`). Treat a stale ledger (`freshness.stale`) as incomplete.
 

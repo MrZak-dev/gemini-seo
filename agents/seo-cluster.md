@@ -1,12 +1,17 @@
 ---
 name: seo-cluster
-description: >
-  Semantic topic clustering analysis using SERP overlap methodology. Expands seed
-  keywords, performs pairwise SERP comparison, classifies intent, designs
+description: >-
+  Semantic topic clustering analysis using SERP overlap methodology. Expands
+  seed keywords, performs pairwise SERP comparison, classifies intent, designs
   hub-and-spoke content architecture, and generates internal link matrices.
-model: opus
-maxTurns: 40
-tools: WebSearch, WebFetch, Read, Write, Glob, Grep
+model: pro
+mainAgent: false
+subagent: true
+inheritMcp: false
+tools:
+  - search_web
+  - read_file
+  - write_file
 ---
 
 <!-- Original concept: Lutfiya Miller, Semantic Cluster Engine (Pro Hub Challenge) -->
@@ -47,7 +52,7 @@ Provide a structured JSON cluster plan with all data. Include:
 ## Output Format
 
 Your primary output is a `cluster-plan.json` file matching the schema defined in
-`${CLAUDE_PLUGIN_ROOT}/skills/seo-cluster/references/hub-spoke-architecture.md`. Also produce a
+`${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/skills/seo-cluster/references/hub-spoke-architecture.md`. Also produce a
 human-readable `cluster-plan.md` summary.
 
 If `output_dir` is provided by the audit orchestrator, write a partial findings
@@ -59,9 +64,9 @@ before finishing, so a turn-budget stop never loses completed work:
 ## Reference Files
 
 Load on demand when you need detailed methodology:
-- `${CLAUDE_PLUGIN_ROOT}/skills/seo-cluster/references/serp-overlap-methodology.md`, Scoring algorithm and thresholds
-- `${CLAUDE_PLUGIN_ROOT}/skills/seo-cluster/references/hub-spoke-architecture.md`, Cluster structure and templates
-- `${CLAUDE_PLUGIN_ROOT}/skills/seo-cluster/references/execution-workflow.md`, Priority ordering and context injection
+- `${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/skills/seo-cluster/references/serp-overlap-methodology.md`, Scoring algorithm and thresholds
+- `${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/skills/seo-cluster/references/hub-spoke-architecture.md`, Cluster structure and templates
+- `${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/skills/seo-cluster/references/execution-workflow.md`, Priority ordering and context injection
 
 ## Cross-Skill Awareness
 

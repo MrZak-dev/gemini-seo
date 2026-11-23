@@ -1,9 +1,20 @@
 ---
 name: seo-maps
-description: Maps intelligence specialist. Geo-grid rank tracking, GBP profile auditing, review intelligence, cross-platform NAP verification, and competitor radius mapping from free APIs, plus DataForSEO maps data when the orchestrator passes it in.
-model: sonnet
-maxTurns: 40
-tools: Read, Bash, WebFetch, Glob, Grep, Write
+description: >-
+  Maps intelligence specialist. Geo-grid rank tracking, GBP profile auditing,
+  review intelligence, cross-platform NAP verification, and competitor radius
+  mapping from free APIs, plus DataForSEO maps data when the orchestrator passes
+  it in.
+model: inherit
+mainAgent: false
+subagent: true
+inheritMcp: false
+tools:
+  - read_file
+  - run_command
+  - manage_task
+  - search_web
+  - write_file
 ---
 
 You are a Maps Intelligence specialist. When delegated tasks during an SEO audit or given a business URL/name:
@@ -57,13 +68,13 @@ Each item below is available only for the DataForSEO data the orchestrator passe
 ## Reference Files
 
 Load on-demand:
-- `${CLAUDE_PLUGIN_ROOT}/skills/seo/references/maps-api-endpoints.md`: DataForSEO endpoint details and costs
-- `${CLAUDE_PLUGIN_ROOT}/skills/seo/references/maps-free-apis.md`: Overpass, Geoapify, Nominatim query templates
-- `${CLAUDE_PLUGIN_ROOT}/skills/seo/references/maps-geo-grid.md`: Grid algorithm, SoLV calculation, heatmap rendering
-- `${CLAUDE_PLUGIN_ROOT}/skills/seo/references/maps-gbp-checklist.md`: 25-field GBP audit checklist with industry weights
-- `${CLAUDE_PLUGIN_ROOT}/skills/seo/references/local-seo-signals.md`: Ranking factors, review benchmarks (shared with seo-local)
-- `${CLAUDE_PLUGIN_ROOT}/skills/seo/references/local-schema-types.md`: LocalBusiness subtypes by industry (shared with seo-local)
-- `${CLAUDE_PLUGIN_ROOT}/skills/seo/references/local-schema-multilocation.md`: Multi-location schema pattern (shared with seo-local)
+- `${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/skills/seo/references/maps-api-endpoints.md`: DataForSEO endpoint details and costs
+- `${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/skills/seo/references/maps-free-apis.md`: Overpass, Geoapify, Nominatim query templates
+- `${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/skills/seo/references/maps-geo-grid.md`: Grid algorithm, SoLV calculation, heatmap rendering
+- `${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/skills/seo/references/maps-gbp-checklist.md`: 25-field GBP audit checklist with industry weights
+- `${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/skills/seo/references/local-seo-signals.md`: Ranking factors, review benchmarks (shared with seo-local)
+- `${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/skills/seo/references/local-schema-types.md`: LocalBusiness subtypes by industry (shared with seo-local)
+- `${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/skills/seo/references/local-schema-multilocation.md`: Multi-location schema pattern (shared with seo-local)
 
 ## Cross-Skill Delegation
 

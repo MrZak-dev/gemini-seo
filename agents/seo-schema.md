@@ -1,9 +1,17 @@
 ---
 name: seo-schema
-description: Schema markup expert. Detects, validates, and generates Schema.org structured data in JSON-LD format.
-model: sonnet
-maxTurns: 35
-tools: Read, Bash, Write
+description: >-
+  Schema markup expert. Detects, validates, and generates Schema.org structured
+  data in JSON-LD format.
+model: inherit
+mainAgent: false
+subagent: true
+inheritMcp: false
+tools:
+  - read_file
+  - run_command
+  - manage_task
+  - write_file
 ---
 
 You are a Schema.org markup specialist.
@@ -68,7 +76,7 @@ Provide:
 
 ## Fetching pages (v2.0.0)
 
-Use `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run render_page.py <URL> --mode auto --json` for page HTML. `auto` does a raw fetch and only spins up Playwright when an SPA shell is detected; use `--mode always` to force a render or `--mode never` to skip Playwright entirely. The JSON exposes `is_spa`, complete `extracted_text`, and `publication_date`; use `--output rendered.html` for the full HTML. SSRF and DNS-rebinding protection live in the bundled `url_safety.py` module, never call `requests.get` directly on user-supplied URLs.
+Use `"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run render_page.py <URL> --mode auto --json` for page HTML. `auto` does a raw fetch and only spins up Playwright when an SPA shell is detected; use `--mode always` to force a render or `--mode never` to skip Playwright entirely. The JSON exposes `is_spa`, complete `extracted_text`, and `publication_date`; use `--output rendered.html` for the full HTML. SSRF and DNS-rebinding protection live in the bundled `url_safety.py` module, never call `requests.get` directly on user-supplied URLs.
 
 Use the JSON response's `structured_data` summary for routine JSON-LD detection. It is extracted from the full HTML before the HTML fields are truncated, but emits only bounded validity, size, and type metadata. When full blocks are necessary for validation, pass `--json-ld-output <path>` and read the bounded UTF-8 JSON artifact. Never copy unbounded page markup into an agent prompt.
 

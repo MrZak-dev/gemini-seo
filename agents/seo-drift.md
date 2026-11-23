@@ -1,12 +1,19 @@
 ---
 name: seo-drift
-description: >
+description: >-
   SEO drift analysis agent. Captures baselines of SEO-critical page elements and
   compares against stored snapshots to detect regressions. Reports changes with
-  severity classification. Only spawned when a drift baseline exists for the URL.
-model: opus
-maxTurns: 30
-tools: Read, Bash, Write, Glob, Grep
+  severity classification. Only spawned when a drift baseline exists for the
+  URL.
+model: pro
+mainAgent: false
+subagent: true
+inheritMcp: false
+tools:
+  - read_file
+  - run_command
+  - manage_task
+  - write_file
 ---
 
 <!-- Original concept: Dan Colta, SEO Drift Monitor (Pro Hub Challenge) -->
@@ -17,10 +24,10 @@ elements by comparing current page state against stored baselines.
 ## Tools
 
 All page fetching goes through the project's existing scripts with SSRF protection:
-- `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run drift_baseline.py <url>` -- capture a new baseline
-- `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run drift_compare.py <url>` -- compare current state to baseline
-- `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run drift_history.py <url>` -- show change history
-- `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run drift_report.py <file> --output report.html` -- generate HTML report
+- `"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run drift_baseline.py <url>` -- capture a new baseline
+- `"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run drift_compare.py <url>` -- compare current state to baseline
+- `"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run drift_history.py <url>` -- show change history
+- `"${GEMINI_SEO_ROOT:-$HOME/.gemini/config/plugins/gemini-seo}/scripts/claude-seo" run drift_report.py <file> --output report.html` -- generate HTML report
 
 Never use curl, wget, or raw HTTP requests. All fetching is handled by
 the bundled `fetch_page.py` module internally, which validates URLs against private/loopback

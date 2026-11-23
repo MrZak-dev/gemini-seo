@@ -1,0 +1,36 @@
+name: Antigravity Plugin Validation
+
+on:
+  push:
+    branches: [antigravity]
+  pull_request:
+    branches: [antigravity]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Antigravity plugin conversion
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+
+      - name: Check Python syntax
+        run: python3 -m py_compile tools/sync_antigravity.py tests/test_antigravity_plugin.py
+
+      - name: Check Antigravity conversion drift
+        run: python3 tools/sync_antigravity.py --check
+
+      - name: Run Antigravity plugin test suite
+        run: python3 -m unittest discover -s tests -p "test_antigravity_*.py" -v
